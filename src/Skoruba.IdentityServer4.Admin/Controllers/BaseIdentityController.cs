@@ -128,7 +128,7 @@ namespace Skoruba.IdentityServer4.Admin.Controllers
         }
 
         [HttpGet]
-        [Route("[controller]/UserProfile/{id:int}")]
+        [Route("[controller]/UserProfile/{id}")]
         public async Task<IActionResult> UserProfile(TUserDtoKey id)
         {
             var user = await _identityService.GetUserAsync(id.ToString());
@@ -213,7 +213,7 @@ namespace Skoruba.IdentityServer4.Admin.Controllers
 
         [HttpGet]
         public async Task<IActionResult> UserClaimsDelete(TUserDtoKey id, TClaimDtoKey claimId)
-        {            
+        {
             if (EqualityComparer<TUserDtoKey>.Default.Equals(id, default)
             || EqualityComparer<TClaimDtoKey>.Default.Equals(claimId, default)) return NotFound();
 
@@ -237,7 +237,7 @@ namespace Skoruba.IdentityServer4.Admin.Controllers
         public async Task<IActionResult> UserProviders(TUserDtoKey id)
         {
             if (EqualityComparer<TUserDtoKey>.Default.Equals(id, default)) return NotFound();
-            
+
             var providers = await _identityService.GetUserProvidersAsync(id.ToString());
 
             return View(providers);
