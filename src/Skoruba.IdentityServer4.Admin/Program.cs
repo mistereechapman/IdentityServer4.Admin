@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using Skoruba.IdentityServer4.Admin.Helpers;
 
@@ -30,6 +31,7 @@ namespace Skoruba.IdentityServer4.Admin
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                   .UseConfiguration(new ConfigurationBuilder().AddCommandLine(args).Build()) //dotnet WebApplication1.dll --server.urls http://*:8080 --environment Staging
                    .UseKestrel(c => c.AddServerHeader = false)
                    .UseStartup<Startup>()
                    .UseSerilog()
