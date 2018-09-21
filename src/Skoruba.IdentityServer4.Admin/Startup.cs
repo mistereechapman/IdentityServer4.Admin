@@ -49,7 +49,7 @@ namespace Skoruba.IdentityServer4.Admin
             services.AddAuthentication(HostingEnvironment, rootConfiguration.AdminConfiguration);
             services.AddMvcExceptionFilters();
             
-            services.AddAdminServices<AdminDbContext, UserDto<Guid>, Guid, RoleDto<Guid>, Guid, Guid, Guid, Guid, Guid,
+            services.AddAdminServices<AdminDbContext, UserDto<Guid>, Guid, RoleDto<Guid>, Guid, int, Guid, Guid, int,
                     UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim, UserIdentityUserRole,
                     UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>();
             services.AddMvcLocalization();

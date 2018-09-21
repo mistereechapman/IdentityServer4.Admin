@@ -35,18 +35,18 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
         private readonly ConfigurationStoreOptions _storeOptions;
         private readonly OperationalStoreOptions _operationalStore;
 
-        private IPersistedGrantRepository<AdminDbContext, UserIdentity, UserIdentityRole, int, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken> GetPersistedGrantRepository(AdminDbContext context)
+        private IPersistedGrantRepository<AdminDbContext, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken> GetPersistedGrantRepository(AdminDbContext context)
         {
-            var persistedGrantRepository = new PersistedGrantRepository<AdminDbContext, UserIdentity, UserIdentityRole, int, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>(context);
+            var persistedGrantRepository = new PersistedGrantRepository<AdminDbContext, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>(context);
 
             return persistedGrantRepository;
         }
 
-        private IPersistedGrantService<AdminDbContext, UserIdentity, UserIdentityRole, int, UserIdentityUserClaim,
+        private IPersistedGrantService<AdminDbContext, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim,
                 UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>
-            GetPersistedGrantService(IPersistedGrantRepository<AdminDbContext, UserIdentity, UserIdentityRole, int, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken> repository, IPersistedGrantServiceResources persistedGrantServiceResources)
+            GetPersistedGrantService(IPersistedGrantRepository<AdminDbContext, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken> repository, IPersistedGrantServiceResources persistedGrantServiceResources)
         {
-            var persistedGrantService = new PersistedGrantService<AdminDbContext, UserIdentity, UserIdentityRole, int, UserIdentityUserClaim,
+            var persistedGrantService = new PersistedGrantService<AdminDbContext, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim,
                 UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>(repository,
                 persistedGrantServiceResources);
 

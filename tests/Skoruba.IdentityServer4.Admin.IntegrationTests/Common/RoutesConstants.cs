@@ -38,20 +38,20 @@ namespace Skoruba.IdentityServer4.Admin.IntegrationTests.Common
             var identityRoutes = new List<string>
             {
                 "Roles",
-                "Role/1",
+                "Role/11111111-1111-1111-1111-111111111111",
                 "Users",
-                "UserProfile/1",
-                "UserRoles/1",
-                "UserRolesDelete/1?roleId=1",
-                "UserClaims/1",
-                "UserClaimsDelete/1?claimId=1",
-                "UserProviders/1",
-                "UserProvidersDelete/1?providerKey=facebook",
-                "UserChangePassword/1",
-                "RoleClaims/1",
-                "RoleClaimsDelete/1?claimId=1",
-                "RoleDelete/1",
-                "UserDelete/1"
+                "UserProfile/11111111-1111-1111-1111-111111111111",
+                "UserRoles/11111111-1111-1111-1111-111111111111",
+                "UserRolesDelete/11111111-1111-1111-1111-111111111111?roleId=1",
+                "UserClaims/11111111-1111-1111-1111-111111111111",
+                "UserClaimsDelete/11111111-1111-1111-1111-111111111111?claimId=1",
+                "UserProviders/11111111-1111-1111-1111-111111111111",
+                "UserProvidersDelete/11111111-1111-1111-1111-111111111111?providerKey=facebook",
+                "UserChangePassword/11111111-1111-1111-1111-111111111111",
+                "RoleClaims/11111111-1111-1111-1111-111111111111",
+                "RoleClaimsDelete/11111111-1111-1111-1111-111111111111?claimId=1",
+                "RoleDelete/11111111-1111-1111-1111-111111111111",
+                "UserDelete/11111111-1111-1111-1111-111111111111"
             };
 
             return identityRoutes;
