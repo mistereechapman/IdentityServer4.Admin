@@ -39,26 +39,26 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
         private readonly ConfigurationStoreOptions _storeOptions;
         private readonly OperationalStoreOptions _operationalStore;
 
-        private IIdentityRepository<AdminDbContext, Guid, Guid, int, UserIdentity, UserIdentityRole, Guid,
+        private IIdentityRepository<AdminDbContext, Guid, Guid, UserIdentity, UserIdentityRole, Guid,
             UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim,
             UserIdentityUserToken> GetIdentityRepository(AdminDbContext dbContext,
             UserManager<UserIdentity> userManager,
             RoleManager<UserIdentityRole> roleManager,
             IMapper mapper)
         {
-            return new IdentityRepository<AdminDbContext, Guid, Guid, int, UserIdentity, UserIdentityRole, Guid,
+            return new IdentityRepository<AdminDbContext, Guid, Guid, UserIdentity, UserIdentityRole, Guid,
                 UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim,
                 UserIdentityUserToken>(dbContext, userManager, roleManager, mapper);
         }
 
-        private IIdentityService<AdminDbContext, UserDto<Guid>, Guid, RoleDto<Guid>, Guid, int, Guid, Guid, int, UserIdentity,
+        private IIdentityService<AdminDbContext, UserDto<Guid>, Guid, RoleDto<Guid>, Guid, Guid, Guid, UserIdentity,
             UserIdentityRole, Guid,
             UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim,
-            UserIdentityUserToken> GetIdentityService(IIdentityRepository<AdminDbContext, Guid, Guid, int, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken> identityRepository,
+            UserIdentityUserToken> GetIdentityService(IIdentityRepository<AdminDbContext, Guid, Guid, UserIdentity, UserIdentityRole, Guid, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken> identityRepository,
             IIdentityServiceResources identityServiceResources,
             IMapper mapper)
         {
-            return new IdentityService<AdminDbContext, UserDto<Guid>, Guid, RoleDto<Guid>, Guid, int, Guid, Guid, int,
+            return new IdentityService<AdminDbContext, UserDto<Guid>, Guid, RoleDto<Guid>, Guid, Guid, Guid,
                 UserIdentity,
                 UserIdentityRole, Guid,
                 UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim,
@@ -67,7 +67,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
 
         private IMapper GetMapper()
         {
-            return new MapperConfiguration(cfg => cfg.AddProfile<IdentityMapperProfile<UserDto<Guid>, Guid, RoleDto<Guid>, Guid, Guid, UserIdentity, UserIdentityRole, Guid,
+            return new MapperConfiguration(cfg => cfg.AddProfile<IdentityMapperProfile<UserDto<Guid>, Guid, RoleDto<Guid>, Guid, UserIdentity, UserIdentityRole, Guid,
                         UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim,
                         UserIdentityUserToken>
                 >())
@@ -102,7 +102,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -132,7 +132,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -156,7 +156,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var addedUserProvider = await context.UserLogins.Where(x => x.ProviderKey == userProvider.ProviderKey && x.LoginProvider == userProvider.LoginProvider).SingleOrDefaultAsync();
                 addedUserProvider.Should().NotBeNull();
 
-                var userProviderDto = IdentityDtoMock<Guid, int>.GenerateRandomUserProviders(userProvider.ProviderKey, userProvider.LoginProvider,
+                var userProviderDto = IdentityDtoMock<Guid>.GenerateRandomUserProviders(userProvider.ProviderKey, userProvider.LoginProvider,
                     userProvider.UserId);
 
                 await identityService.DeleteUserProvidersAsync(userProviderDto);
@@ -182,7 +182,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -196,7 +196,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 userDto.ShouldBeEquivalentTo(newUserDto);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -209,7 +209,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 //Assert new role
                 roleDto.ShouldBeEquivalentTo(newRoleDto);
 
-                var userRoleDto = IdentityDtoMock<Guid, int>.GenerateRandomUserRole<RoleDto<Guid>>(roleDto.Id, userDto.Id);
+                var userRoleDto = IdentityDtoMock<Guid>.GenerateRandomUserRole<RoleDto<Guid>>(roleDto.Id, userDto.Id);
 
                 await identityService.CreateUserRoleAsync(userRoleDto);
 
@@ -235,7 +235,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -249,7 +249,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 userDto.ShouldBeEquivalentTo(newUserDto);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -262,7 +262,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 //Assert new role
                 roleDto.ShouldBeEquivalentTo(newRoleDto);
 
-                var userRoleDto = IdentityDtoMock<Guid, int>.GenerateRandomUserRole<RoleDto<Guid>>(roleDto.Id, userDto.Id);
+                var userRoleDto = IdentityDtoMock<Guid>.GenerateRandomUserRole<RoleDto<Guid>>(roleDto.Id, userDto.Id);
 
                 await identityService.CreateUserRoleAsync(userRoleDto);
 
@@ -293,7 +293,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, Guid>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -307,7 +307,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 userDto.ShouldBeEquivalentTo(newUserDto);
 
                 //Generate random new user claim
-                var userClaimDto = IdentityDtoMock<Guid, int>.GenerateRandomUserClaim(0, userDto.Id);
+                var userClaimDto = IdentityDtoMock<Guid>.GenerateRandomUserClaim(0, userDto.Id);
 
                 await identityService.CreateUserClaimsAsync(userClaimDto);
 
@@ -315,7 +315,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var claim = await context.UserClaims.Where(x => x.ClaimType == userClaimDto.ClaimType && x.ClaimValue == userClaimDto.ClaimValue).SingleOrDefaultAsync();
                 userClaimDto.ClaimId = claim.Id;
 
-                var newUserClaim = await identityService.GetUserClaimAsync(userDto.Id.ToString(), claim.Id.ToString());
+                var newUserClaim = await identityService.GetUserClaimAsync(userDto.Id.ToString(), claim.Id);
 
                 //Assert new user claim
                 userClaimDto.ShouldBeEquivalentTo(newUserClaim);
@@ -337,7 +337,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -351,7 +351,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 userDto.ShouldBeEquivalentTo(newUserDto);
 
                 //Generate random new user claim
-                var userClaimDto = IdentityDtoMock<Guid, int>.GenerateRandomUserClaim(0, userDto.Id);
+                var userClaimDto = IdentityDtoMock<Guid>.GenerateRandomUserClaim(0, userDto.Id);
 
                 await identityService.CreateUserClaimsAsync(userClaimDto);
 
@@ -359,7 +359,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var claim = await context.UserClaims.Where(x => x.ClaimType == userClaimDto.ClaimType && x.ClaimValue == userClaimDto.ClaimValue).SingleOrDefaultAsync();
                 userClaimDto.ClaimId = claim.Id;
 
-                var newUserClaim = await identityService.GetUserClaimAsync(userDto.Id.ToString(), claim.Id.ToString());
+                var newUserClaim = await identityService.GetUserClaimAsync(userDto.Id.ToString(), claim.Id);
 
                 //Assert new user claim
                 userClaimDto.ShouldBeEquivalentTo(newUserClaim);
@@ -387,7 +387,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -404,7 +404,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 context.Entry(user).State = EntityState.Detached;
 
                 //Generete new user with added item id
-                var userDtoForUpdate = IdentityDtoMock<Guid, int>.GenerateRandomUser(user.Id);
+                var userDtoForUpdate = IdentityDtoMock<Guid>.GenerateRandomUser(user.Id);
 
                 //Update user
                 await identityService.UpdateUserAsync(userDtoForUpdate);
@@ -431,7 +431,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new user
-                var userDto = IdentityDtoMock<Guid, int>.GenerateRandomUser(Guid.Empty);
+                var userDto = IdentityDtoMock<Guid>.GenerateRandomUser(Guid.Empty);
 
                 await identityService.CreateUserAsync(userDto);
 
@@ -471,7 +471,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -501,7 +501,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -518,7 +518,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 context.Entry(role).State = EntityState.Detached;
 
                 //Generete new role with added item id
-                var roleDtoForUpdate = IdentityDtoMock<Guid, int>.GenerateRandomRole(role.Id);
+                var roleDtoForUpdate = IdentityDtoMock<Guid>.GenerateRandomRole(role.Id);
 
                 //Update role
                 await identityService.UpdateRoleAsync(roleDtoForUpdate);
@@ -545,7 +545,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -585,7 +585,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -599,7 +599,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 roleDto.ShouldBeEquivalentTo(newRoleDto);
 
                 //Generate random new role claim
-                var roleClaimDto = IdentityDtoMock<Guid, int>.GenerateRandomRoleClaim(0, roleDto.Id);
+                var roleClaimDto = IdentityDtoMock<Guid>.GenerateRandomRoleClaim(0, roleDto.Id);
 
                 await identityService.CreateRoleClaimsAsync(roleClaimDto);
 
@@ -607,7 +607,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var roleClaim = await context.RoleClaims.Where(x => x.ClaimType == roleClaimDto.ClaimType && x.ClaimValue == roleClaimDto.ClaimValue).SingleOrDefaultAsync();
                 roleClaimDto.ClaimId = roleClaim.Id;
 
-                var newRoleClaimDto = await identityService.GetRoleClaimAsync(roleDto.Id.ToString(), roleClaimDto.ClaimId.ToString());
+                var newRoleClaimDto = await identityService.GetRoleClaimAsync(roleDto.Id.ToString(), roleClaimDto.ClaimId);
 
                 //Assert new role
                 roleClaimDto.ShouldBeEquivalentTo(newRoleClaimDto);
@@ -629,7 +629,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var identityService = GetIdentityService(identityRepository, localizerIdentityResource, mapper);
 
                 //Generate random new role
-                var roleDto = IdentityDtoMock<Guid, int>.GenerateRandomRole(Guid.Empty);
+                var roleDto = IdentityDtoMock<Guid>.GenerateRandomRole(Guid.Empty);
 
                 await identityService.CreateRoleAsync(roleDto);
 
@@ -643,7 +643,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 roleDto.ShouldBeEquivalentTo(newRoleDto);
 
                 //Generate random new role claim
-                var roleClaimDto = IdentityDtoMock<Guid, int>.GenerateRandomRoleClaim(0, roleDto.Id);
+                var roleClaimDto = IdentityDtoMock<Guid>.GenerateRandomRoleClaim(0, roleDto.Id);
 
                 await identityService.CreateRoleClaimsAsync(roleClaimDto);
 
@@ -651,7 +651,7 @@ namespace Skoruba.IdentityServer4.Admin.UnitTests.Services
                 var roleClaim = await context.RoleClaims.Where(x => x.ClaimType == roleClaimDto.ClaimType && x.ClaimValue == roleClaimDto.ClaimValue).SingleOrDefaultAsync();
                 roleClaimDto.ClaimId = roleClaim.Id;
 
-                var newRoleClaimDto = await identityService.GetRoleClaimAsync(roleDto.Id.ToString(), roleClaimDto.ClaimId.ToString());
+                var newRoleClaimDto = await identityService.GetRoleClaimAsync(roleDto.Id.ToString(), roleClaimDto.ClaimId);
 
                 //Assert new role
                 roleClaimDto.ShouldBeEquivalentTo(newRoleClaimDto);
