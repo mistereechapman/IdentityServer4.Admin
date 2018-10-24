@@ -13,14 +13,15 @@ This is currently in **beta version**
 
 The application is written in the **Asp.Net Core MVC - using .NET Core 2.1** - works only with **IdentityServer4 version 2.0+**
 
-- [Install](https://www.microsoft.com/net/download/windows#/current) the latest .NET Core 2.x SDK
+## Requirements
+- [Install](https://www.microsoft.com/net/download/windows#/current) the latest .NET Core 2.x SDK (using older versions may lead to 502.5 errors when hosted on IIS or application exiting immediately after starting when self-hosted)
 
 ## Installation via dotnet new template
 
 - Install the dotnet new template:
 
 ```sh
-dotnet new -i Skoruba.IdentityServer4.Admin.Templates::1.0.0-beta4
+dotnet new -i Skoruba.IdentityServer4.Admin.Templates::1.0.0-beta4-update1
 ```
 
 - Create new project:
@@ -52,6 +53,12 @@ Project template options:
 
 - [Available nuget packages](https://www.nuget.org/profiles/skoruba)
 
+### Running in Visual Studio
+
+- Set Startup projects:
+  - Skoruba.IdentityServer4.Admin
+  - Skoruba.IdentityServer4.STS.Identity
+
 ## Administration UI preview
 
 - This administration uses bootstrap 4
@@ -72,6 +79,9 @@ git clone https://github.com/skoruba/IdentityServer4.Admin
 
 ```sh
 cd src/Skoruba.IdentityServer4.Admin
+npm install
+
+cd src/Skoruba.IdentityServer4.STS.Identity
 npm install
 ```
 
@@ -126,14 +136,26 @@ Migrations are not a part of the repository - they are ignored in `.gitignore`.
   - Client label descriptions from - http://docs.identityserver.io/en/release/reference/client.html
   - Api Resource label descriptions from - http://docs.identityserver.io/en/release/reference/api_resource.html
   - Identity Resource label descriptions from - http://docs.identityserver.io/en/release/reference/identity_resource.html
+  
+## Tests
+
+-  The solution contains unit and integration tests. 
+- **Stage environment is used for integration tests**:
+  - `DbContext` contains setup for InMemory database
+  - `Authentication` is setup for `CookieAuthentication` - with fake login url only for testing purpose
+  - `AuthenticatedTestRequestMiddleware` - middleware for testing of authentication.
+  
+- If you want to use `Stage environment` for deploying - it is necessary to change these settings in `StartupHelpers.cs`.
 
 ## Overview
 
-- Solution structure:
+### Solution structure:
 
-  - `Skoruba.IdentityServer4` - Quickstart UI for an in-memory IdentityServer4 (for development) - (https://github.com/IdentityServer/IdentityServer4.Quickstart.UI)
+- STS:
 
-  - `Skoruba.IdentityServer4.AspNetIdentity` - [Quickstart UI for the IdentityServer4 with Asp.Net Core Identity and EF Core storage](https://github.com/IdentityServer/IdentityServer4.Samples/tree/release/Quickstarts/Combined_AspNetIdentity_and_EntityFrameworkStorage)
+  - `Skoruba.IdentityServer4.STS.Identity` - [Quickstart UI for the IdentityServer4 with Asp.Net Core Identity and EF Core storage](https://github.com/IdentityServer/IdentityServer4.Samples/tree/release/Quickstarts/Combined_AspNetIdentity_and_EntityFrameworkStorage)
+
+- Admin UI:
 
   - `Skoruba.IdentityServer4.Admin` - ASP.NET Core MVC application that contains Admin UI
 
@@ -149,11 +171,13 @@ Migrations are not a part of the repository - they are ignored in `.gitignore`.
 
   - `Skoruba.IdentityServer4.Admin.EntityFramework.DbContexts` - project that contains AdminDbContext for the administration
 
+- Tests:
+
   - `Skoruba.IdentityServer4.Admin.IntegrationTests` - xUnit project that contains the integration tests
 
   - `Skoruba.IdentityServer4.Admin.UnitTests` - xUnit project that contains the unit tests
 
-- The admininistration contains the following sections:
+### The admininistration contains the following sections:
 
 ![Skoruba.IdentityServer4.Admin App](docs/Images/Skoruba.IdentityServer4.Admin-Solution.png)
 
@@ -221,19 +245,24 @@ It is possible to define the configuration according the client type - by defaul
 ### 1.0.0:
 
 - [x] Create the Business Logic & EF layers - available as a nuget package
-- [ ] Create a project template using dotnet CLI - `dotnet new template`
+- [x] Create a project template using dotnet CLI - `dotnet new template`
   - [x] First template: The administration of the IdentityServer4 and Asp.Net Core Identity
-  - [ ] Second template: The administration of the IdentityServer4 (without Asp.Net Core Identity) ([#79](https://github.com/skoruba/IdentityServer4.Admin/issues/79))
 - [ ] Add audit logs to track changes ([#61](https://github.com/skoruba/IdentityServer4.Admin/issues/61))
 - [x] Add localization for other languages
   - [x] English
   - [x] Chinese
+  
+### 1.1.0:
+
+- [ ] Create a project template using dotnet CLI - `dotnet new template`
+  - [ ] Second template: The administration of the IdentityServer4 (without Asp.Net Core Identity) ([#79](https://github.com/skoruba/IdentityServer4.Admin/issues/79))
 - [ ] User registration / Password reset
 - [ ] Account linking
 - [ ] Manage profile
 
 ### Future:
 
+- Add UI tests
 - Add more unit and integration tests :blush:
 - Extend administration for another protocols
 - Create separate UI using `Razor Class Library`
