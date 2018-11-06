@@ -117,25 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiResourceDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 资源不存在</value>
+  <data name="SuccessCreateRole" xml:space="preserve">
+    <value>角色 {0} 已成功保存！</value>
   </data>
-  <data name="ApiResourceExistsKey" xml:space="preserve">
-    <value>Api 资源已经存在</value>
+  <data name="SuccessCreateRoleClaims" xml:space="preserve">
+    <value>声明 {0} - {1} 已成功保存！</value>
   </data>
-  <data name="ApiResourceExistsValue" xml:space="preserve">
-    <value>Api 资源 ({0}) 已经存在</value>
+  <data name="SuccessCreateUser" xml:space="preserve">
+    <value>用户 {0} 已成功保存！</value>
   </data>
-  <data name="ApiScopeDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 作用域不存在</value>
+  <data name="SuccessCreateUserClaims" xml:space="preserve">
+    <value>声明 {0} - {1} 已成功保存！</value>
   </data>
-  <data name="ApiScopeExistsKey" xml:space="preserve">
-    <value>Api 作用域已经存在</value>
+  <data name="SuccessCreateUserRole" xml:space="preserve">
+    <value>角色已成功保存！</value>
   </data>
-  <data name="ApiScopeExistsValue" xml:space="preserve">
-    <value>Api 作用域 ({0}) 已经存在</value>
+  <data name="SuccessDeleteRole" xml:space="preserve">
+    <value>角色已成功删除！</value>
   </data>
-  <data name="ApiSecretDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 密钥不存在</value>
+  <data name="SuccessDeleteRoleClaims" xml:space="preserve">
+    <value>声明已成功删除！</value>
+  </data>
+  <data name="SuccessDeleteUser" xml:space="preserve">
+    <value>用户已成功删除！</value>
+  </data>
+  <data name="SuccessDeleteUserClaims" xml:space="preserve">
+    <value>声明已成功删除！</value>
+  </data>
+  <data name="SuccessDeleteUserProviders" xml:space="preserve">
+    <value>用户提供商已成功删除！</value>
+  </data>
+  <data name="SuccessDeleteUserRole" xml:space="preserve">
+    <value>角色已成功删除！</value>
+  </data>
+  <data name="SuccessTitle" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="SuccessUserChangePassword" xml:space="preserve">
+    <value>新密码已成功更改！</value>
   </data>
 </root>

@@ -117,25 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiResourceDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 资源不存在</value>
+  <data name="PanelTitle" xml:space="preserve">
+    <value>名称</value>
   </data>
-  <data name="ApiResourceExistsKey" xml:space="preserve">
-    <value>Api 资源已经存在</value>
+  <data name="TitleEmpty" xml:space="preserve">
+    <value>空 - 默认</value>
   </data>
-  <data name="ApiResourceExistsValue" xml:space="preserve">
-    <value>Api 资源 ({0}) 已经存在</value>
+  <data name="TitleHybrid" xml:space="preserve">
+    <value>混合流</value>
   </data>
-  <data name="ApiScopeDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 作用域不存在</value>
+  <data name="TitleImplicit" xml:space="preserve">
+    <value>隐含流</value>
   </data>
-  <data name="ApiScopeExistsKey" xml:space="preserve">
-    <value>Api 作用域已经存在</value>
+  <data name="TitleMachine" xml:space="preserve">
+    <value>机械/机器人</value>
   </data>
-  <data name="ApiScopeExistsValue" xml:space="preserve">
-    <value>Api 作用域 ({0}) 已经存在</value>
+  <data name="TitleNative" xml:space="preserve">
+    <value>原生应用程序 - 移动/桌面</value>
   </data>
-  <data name="ApiSecretDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 密钥不存在</value>
+  <data name="TitlePasswordAndClient" xml:space="preserve">
+    <value>资源所有者密码和客户端凭据流</value>
+  </data>
+  <data name="TitleSpa" xml:space="preserve">
+    <value>单页应用程序 - Javascript</value>
+  </data>
+  <data name="TitleWebHybrid" xml:space="preserve">
+    <value>Web 应用程序 - 服务器端</value>
+  </data>
+  <data name="TitleWebImplicit" xml:space="preserve">
+    <value>Web 应用程序 - 服务器端</value>
   </data>
 </root>

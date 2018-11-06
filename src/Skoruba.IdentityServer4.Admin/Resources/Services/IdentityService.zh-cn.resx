@@ -117,25 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiResourceDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 资源不存在</value>
+  <data name="IdentityErrorKey" xml:space="preserve">
+    <value>错误</value>
   </data>
-  <data name="ApiResourceExistsKey" xml:space="preserve">
-    <value>Api 资源已经存在</value>
+  <data name="RoleClaimDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的角色声明不存在</value>
   </data>
-  <data name="ApiResourceExistsValue" xml:space="preserve">
-    <value>Api 资源 ({0}) 已经存在</value>
+  <data name="RoleClaimsCreateFailed" xml:space="preserve">
+    <value>角色声明创建失败</value>
   </data>
-  <data name="ApiScopeDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 作用域不存在</value>
+  <data name="RoleClaimsDeleteFailed" xml:space="preserve">
+    <value>角色声明删除失败</value>
   </data>
-  <data name="ApiScopeExistsKey" xml:space="preserve">
-    <value>Api 作用域已经存在</value>
+  <data name="RoleCreateFailed" xml:space="preserve">
+    <value>角色创建失败</value>
   </data>
-  <data name="ApiScopeExistsValue" xml:space="preserve">
-    <value>Api 作用域 ({0}) 已经存在</value>
+  <data name="RoleDeleteFailed" xml:space="preserve">
+    <value>角色删除失败</value>
   </data>
-  <data name="ApiSecretDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 密钥不存在</value>
+  <data name="RoleDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的角色不存在</value>
+  </data>
+  <data name="RoleUpdateFailed" xml:space="preserve">
+    <value>角色更新失败</value>
+  </data>
+  <data name="UserChangePasswordFailed" xml:space="preserve">
+    <value>用户更改密码失败</value>
+  </data>
+  <data name="UserClaimDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的用户声明不存在</value>
+  </data>
+  <data name="UserClaimsCreateFailed" xml:space="preserve">
+    <value>用户声明创建失败</value>
+  </data>
+  <data name="UserClaimsDeleteFailed" xml:space="preserve">
+    <value>用户声明删除失败</value>
+  </data>
+  <data name="UserCreateFailed" xml:space="preserve">
+    <value>用户创建失败</value>
+  </data>
+  <data name="UserDeleteFailed" xml:space="preserve">
+    <value>用户删除失败</value>
+  </data>
+  <data name="UserDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的用户不存在</value>
+  </data>
+  <data name="UserProviderDeleteFailed" xml:space="preserve">
+    <value>用户提供程序删除失败</value>
+  </data>
+  <data name="UserProviderDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的用户提供程序不存在</value>
+  </data>
+  <data name="UserRoleCreateFailed" xml:space="preserve">
+    <value>用户角色创建失败</value>
+  </data>
+  <data name="UserRoleDeleteFailed" xml:space="preserve">
+    <value>用户角色上传失败</value>
+  </data>
+  <data name="UserUpdateFailed" xml:space="preserve">
+    <value>用户更新失败</value>
   </data>
 </root>

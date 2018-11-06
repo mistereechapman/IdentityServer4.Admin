@@ -117,25 +117,118 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiResourceDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 资源不存在</value>
+  <data name="RoleName_Info" xml:space="preserve">
+    <value>角色的名称</value>
   </data>
-  <data name="ApiResourceExistsKey" xml:space="preserve">
-    <value>Api 资源已经存在</value>
+  <data name="RoleName_Label" xml:space="preserve">
+    <value>角色名</value>
   </data>
-  <data name="ApiResourceExistsValue" xml:space="preserve">
-    <value>Api 资源 ({0}) 已经存在</value>
+  <data name="RolesList_Info" xml:space="preserve">
+    <value>角色</value>
   </data>
-  <data name="ApiScopeDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 作用域不存在</value>
+  <data name="RolesList_Label" xml:space="preserve">
+    <value>角色</value>
   </data>
-  <data name="ApiScopeExistsKey" xml:space="preserve">
-    <value>Api 作用域已经存在</value>
+  <data name="Type_Info" xml:space="preserve">
+    <value />
   </data>
-  <data name="ApiScopeExistsValue" xml:space="preserve">
-    <value>Api 作用域 ({0}) 已经存在</value>
+  <data name="Type_Label" xml:space="preserve">
+    <value>声明类型</value>
   </data>
-  <data name="ApiSecretDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 密钥不存在</value>
+  <data name="UserAccessFailedCount_Info" xml:space="preserve">
+    <value>用户访问失败计数</value>
+  </data>
+  <data name="UserAccessFailedCount_Label" xml:space="preserve">
+    <value>用户访问失败计数</value>
+  </data>
+  <data name="UserChangePasswordConfirmPassword_Info" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="UserChangePasswordConfirmPassword_Label" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="UserChangePasswordPassword_Info" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="UserChangePasswordPassword_Label" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="UserChangePasswordUserName_Info" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="UserChangePasswordUserName_Label" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="UserEmailConfirmed_Info" xml:space="preserve">
+    <value>用户 Email 码已确认</value>
+  </data>
+  <data name="UserEmailConfirmed_Label" xml:space="preserve">
+    <value>用户 Email 码已确认</value>
+  </data>
+  <data name="UserEmail_Info" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserEmail_Label" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="UserLockoutEnabled_Info" xml:space="preserve">
+    <value>用户锁定已启用</value>
+  </data>
+  <data name="UserLockoutEnabled_Label" xml:space="preserve">
+    <value>用户锁定已启用</value>
+  </data>
+  <data name="UserLockoutEnd_Info" xml:space="preserve">
+    <value>用户锁定结束</value>
+  </data>
+  <data name="UserLockoutEnd_Label" xml:space="preserve">
+    <value>用户锁定结束</value>
+  </data>
+  <data name="UserPhoneNumberConfirmed_Info" xml:space="preserve">
+    <value>用户手机号码已确认</value>
+  </data>
+  <data name="UserPhoneNumberConfirmed_Label" xml:space="preserve">
+    <value>用户手机号码已确认</value>
+  </data>
+  <data name="UserPhoneNumber_Info" xml:space="preserve">
+    <value>用户手机号码</value>
+  </data>
+  <data name="UserPhoneNumber_Label" xml:space="preserve">
+    <value>用户手机号码</value>
+  </data>
+  <data name="UserProviderLoginProvider_Info" xml:space="preserve">
+    <value>登录提供程序</value>
+  </data>
+  <data name="UserProviderLoginProvider_Label" xml:space="preserve">
+    <value>登录提供程序</value>
+  </data>
+  <data name="UserProviderProviderDisplayName_Info" xml:space="preserve">
+    <value>显示名称</value>
+  </data>
+  <data name="UserProviderProviderDisplayName_Label" xml:space="preserve">
+    <value>显示名称</value>
+  </data>
+  <data name="UserProviderProviderKey_Info" xml:space="preserve">
+    <value>提供程序密钥</value>
+  </data>
+  <data name="UserProviderProviderKey_Label" xml:space="preserve">
+    <value>提供程序密钥</value>
+  </data>
+  <data name="UserTwoFactorEnabled_Info" xml:space="preserve">
+    <value>用户二次验证已启用</value>
+  </data>
+  <data name="UserTwoFactorEnabled_Label" xml:space="preserve">
+    <value>用户二次验证已启用</value>
+  </data>
+  <data name="UserUserName_Info" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="UserUserName_Label" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Value_Info" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Value_Label" xml:space="preserve">
+    <value>声明值</value>
   </data>
 </root>

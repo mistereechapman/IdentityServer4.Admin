@@ -117,25 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApiResourceDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 资源不存在</value>
+  <data name="ClientClaimDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的客户端声明不存在</value>
   </data>
-  <data name="ApiResourceExistsKey" xml:space="preserve">
-    <value>Api 资源已经存在</value>
+  <data name="ClientDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的客户端不存在</value>
   </data>
-  <data name="ApiResourceExistsValue" xml:space="preserve">
-    <value>Api 资源 ({0}) 已经存在</value>
+  <data name="ClientExistsKey" xml:space="preserve">
+    <value>客户端已存在</value>
   </data>
-  <data name="ApiScopeDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 作用域不存在</value>
+  <data name="ClientExistsValue" xml:space="preserve">
+    <value>客户端标识 ({0}) 已存在</value>
   </data>
-  <data name="ApiScopeExistsKey" xml:space="preserve">
-    <value>Api 作用域已经存在</value>
+  <data name="ClientPropertyDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的客户端属性不存在</value>
   </data>
-  <data name="ApiScopeExistsValue" xml:space="preserve">
-    <value>Api 作用域 ({0}) 已经存在</value>
-  </data>
-  <data name="ApiSecretDoesNotExist" xml:space="preserve">
-    <value>标识为 {0} 的 Api 密钥不存在</value>
+  <data name="ClientSecretDoesNotExist" xml:space="preserve">
+    <value>标识为 {0} 的客户端密钥不存在</value>
   </data>
 </root>
