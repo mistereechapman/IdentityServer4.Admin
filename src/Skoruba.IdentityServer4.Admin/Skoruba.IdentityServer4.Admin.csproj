@@ -34,4 +34,10 @@
 	  <Folder Include="Data\Migrations\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="Views\Shared\Common\SelectLanguage.cshtml">
+	    <Pack>$(IncludeRazorContentInPack)</Pack>
+	  </Content>
+	</ItemGroup>
+
 </Project>
