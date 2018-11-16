@@ -56,5 +56,6 @@ namespace Skoruba.IdentityServer4.Admin.Controllers
 
             return LocalRedirect(returnUrl);
         }
+
     }
 }
