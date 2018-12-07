@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  skoruba.identityserver4.admin:
+    image: ${DOCKER_REGISTRY-}skoruba-identityserver4-admin
+    build:
+      context: .
+      dockerfile: src/Skoruba.IdentityServer4.Admin/Dockerfile
