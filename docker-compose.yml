@@ -1,19 +1,37 @@
-version: '3.4'
+version: '3.7'
 
 services:
   skoruba.identityserver4.admin:
     image: ${DOCKER_REGISTRY-}skoruba-identityserver4-admin
+    container_name: skorubai-admin
+    hostname: skorubai-admin
     ports:
       - 9000:80
     build:
       context: .
       dockerfile: src/Skoruba.IdentityServer4.Admin/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:AdminConnection=Server=192.168.1.10;Database=IdentityServer4Admin-Guid; User Id=sns; Password=sns0714;MultipleActiveResultSets=true"
+      - "AdminConfiguration:IdentityAdminBaseUrl=http://localhost:9000"
+      - "AdminConfiguration:IdentityAdminRedirectUri=http://localhost:9000/signin-oidc"
+      - "AdminConfiguration:IdentityServerBaseUrl=http://skoruba.identityserver4.sts.identity:5000"
+    links:
+      - skoruba.identityserver4.sts.identity
+      - skoruba.identityserver4.sts.identity:skorubai-sts
+    depends_on:
+      - skoruba.identityserver4.sts.identity
 
   skoruba.identityserver4.sts.identity:
     image: ${DOCKER_REGISTRY-}skorubai-dentityserver4-sts-identity
+    container_name: skorubai-sts
+    hostname: skorubai-sts
     ports:
       - 5000:80
     build:
       context: .
       dockerfile: src/Skoruba.IdentityServer4.STS.Identity/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:AdminConnection=Server=192.168.1.10;Database=IdentityServer4Admin-Guid; User Id=sns; Password=sns0714;MultipleActiveResultSets=true"
 
