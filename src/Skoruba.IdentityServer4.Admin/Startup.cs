@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using Exceptionless;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,7 @@ namespace Skoruba.IdentityServer4.Admin
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.AddLogging(loggerFactory, Configuration);
+            loggerFactory.AddExceptionless((c) => c.ReadFromConfiguration(Configuration));
 
             if (env.IsDevelopment())
             {
@@ -86,7 +88,6 @@ namespace Skoruba.IdentityServer4.Admin
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseHttpsRedirection();
             app.UseSecurityHeaders();
             app.UseStaticFiles();
             app.ConfigureAuthenticationServices(env);
