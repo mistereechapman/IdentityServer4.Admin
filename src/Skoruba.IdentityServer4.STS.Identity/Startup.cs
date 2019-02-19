@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Skoruba.IdentityServer4.Admin.EntityFramework.DbContexts;
 using Skoruba.IdentityServer4.Admin.EntityFramework.Identity.Entities.Identity;
 using Skoruba.IdentityServer4.STS.Identity.Helpers;
+using System;
 
 namespace Skoruba.IdentityServer4.STS.Identity
 {
@@ -35,9 +36,10 @@ namespace Skoruba.IdentityServer4.STS.Identity
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContexts<AdminDbContext>(Configuration);
-            services.AddAuthenticationServices<AdminDbContext, UserIdentity, UserIdentityRole>(Environment, Configuration, Logger);
-            services.AddMvcLocalization();
+            services.AddIdentityDbContext<AdminIdentityDbContext>(Configuration);
+            services.AddEmailSenders(Configuration);            
+            services.AddAuthenticationServices<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminIdentityDbContext, UserIdentity, UserIdentityRole>(Environment, Configuration, Logger);
+            services.AddMvcWithLocalization<UserIdentity, Guid>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
