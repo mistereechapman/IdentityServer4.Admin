@@ -5,11 +5,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "9000:80"
+      - "80"
 
   skoruba.identityserver4.sts.identity:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "5000:80"
+      - "80"
 
