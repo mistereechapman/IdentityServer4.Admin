@@ -51,6 +51,7 @@ namespace Skoruba.IdentityServer4.STS.Identity
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseSecurityHeaders();
             app.UseStaticFiles();
             app.UseIdentityServer();
