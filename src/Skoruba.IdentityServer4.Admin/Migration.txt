@@ -1,0 +1,4 @@
+﻿dotnet ef migrations add InitAdminIdentityDb -c AdminIdentityDbContext -o Data/Migrations/AdminIdentityDb
+dotnet ef migrations add InitIdentityServerConfigurationDb -c IdentityServerConfigurationDbContext -o Data/Migrations/IdentityServerConfigurationDb
+dotnet ef migrations add InitIdentityServerPersistedGrantDb -c IdentityServerPersistedGrantDbContext -o Data/Migrations/IdentityServerPersistedGrantDb
+dotnet ef migrations add InitAdminLogDb -c AdminLogDbContext -o Data/Migrations/AdminLogDb
