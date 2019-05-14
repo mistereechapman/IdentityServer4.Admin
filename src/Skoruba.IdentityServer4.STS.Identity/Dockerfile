@@ -1,9 +1,15 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2-alpine3.9 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2-alpine3.9 AS build
 WORKDIR /src
+
+RUN mkdir /root/certs
+COPY /certs/* /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+
 COPY src/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj src/Skoruba.IdentityServer4.STS.Identity/
 RUN dotnet restore src/Skoruba.IdentityServer4.STS.Identity/Skoruba.IdentityServer4.STS.Identity.csproj
 COPY . .

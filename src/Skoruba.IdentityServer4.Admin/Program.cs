@@ -32,7 +32,9 @@ namespace Skoruba.IdentityServer4.Admin
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                   .UseKestrel(c => c.AddServerHeader = false)
+                   .UseKestrel(c => {
+                       c.AddServerHeader = false;
+                       })
                    .UseStartup<Startup>()
                    .UseSerilog()
                    .Build();

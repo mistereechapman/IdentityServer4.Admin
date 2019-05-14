@@ -1,63 +1,88 @@
 version: '3.4'
 
 services:
-  skoruba.identityserver4.admin:
-    image: ${DOCKER_REGISTRY-}skoruba-identityserver4-admin
+  my.identityserver4.admin:
+    image: ${DOCKER_REGISTRY-}my-identityserver4-admin
     ports:
-      - 9000:80
+      - "9005:443"
     build:
       context: .
       dockerfile: src/Skoruba.IdentityServer4.Admin/Dockerfile
-    container_name: skoruba-identityserver4-admin
+    container_name: my-identityserver4-admin
     environment:
+      - "ConnectionStrings:ConfigurationDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - "ConnectionStrings:PersistedGrantDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - "ConnectionStrings:IdentityDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - "ConnectionStrings:AdminLogDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - "AdminConfiguration:IdentityAdminBaseUrl=https://localhost:9005"
+      - "AdminConfiguration:IdentityAdminRedirectUri=https://localhost:9005/signin-oidc"
+      - "AdminConfiguration:IdentityServerBaseUrl=https://docker.for.win.localhost:81"
+      - USER_SECRETS_ID=f19372ad-f02a-4cad-a210-53505a982aeb
+      - HTTP_PROXY=${PROXY_ADDRESS}
+      - HTTPS_PROXY=${PROXY_ADDRESS}
+      - MAX_HEAP:2048m
+      - MIN_HEAP:1024m
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:ConfigurationDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
-      - "ConnectionStrings:PersistedGrantDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
-      - "ConnectionStrings:IdentityDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
-      - "ConnectionStrings:AdminLogDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
-      - "AdminConfiguration:IdentityAdminBaseUrl=http://localhost:9000"
-      - "AdminConfiguration:IdentityAdminRedirectUri=http://localhost:9000/signin-oidc"
-      - "AdminConfiguration:IdentityServerBaseUrl=http://id.example.com"
+      - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt 
+      - SSL_CERT_DIR=/dev/null
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets/:/root/.microsoft/usersecrets
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https/
+      - ${PERSISTENT_STORAGE_LOCATION}\my-identityserver-webapp:/root/certs
     command: dotnet Skoruba.IdentityServer4.Admin.dll /seed
     depends_on:
       - db
-      - skoruba.identityserver4.sts.identity
-
-  skoruba.identityserver4.sts.identity:
-    image: ${DOCKER_REGISTRY-}skoruba-identityserver4-sts-identity
+      - my.identityserver4.sts.identity
+    links:
+      - "db:my.identityserver4.sts.identity"
+  my.identityserver4.sts.identity:
+    image: ${DOCKER_REGISTRY-}my-identityserver4-sts-identity
     ports:
-      - 80:80
+      - "81:443"
     build:
       context: .
       dockerfile: src/Skoruba.IdentityServer4.STS.Identity/Dockerfile
-    container_name: skoruba-identityserver4-sts-identity
+    container_name: my-identityserver4-sts-identity
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:ConfigurationDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
-      - "ConnectionStrings:PersistedGrantDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
-      - "ConnectionStrings:IdentityDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=Password_123;MultipleActiveResultSets=true"
+      - "ConnectionStrings:ConfigurationDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - "ConnectionStrings:PersistedGrantDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - "ConnectionStrings:IdentityDbConnection=Server=db;Database=IdentityServer4Admin;User Id=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=true"
+      - USER_SECRETS_ID=f19372ad-f02a-4cad-a210-53505a982aeb
+      - HTTP_PROXY=${PROXY_ADDRESS}
+      - HTTPS_PROXY=${PROXY_ADDRESS}
+      - MAX_HEAP:2048m
+      - MIN_HEAP:1024m
+      - ASPNETCORE_URLS=${ASPNETCORE_URLS}
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets/:/root/.microsoft/usersecrets
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https/
+      - ${PERSISTENT_STORAGE_LOCATION}\my-identityserver-webapp:/root/certs
     depends_on:
       - db
     networks:
       default:
         aliases:
-          - id.example.com
-
+          - my.IdentityServer.com
+    links:
+      - "db"
   db:
     image: "mcr.microsoft.com/mssql/server"
     ports:
       - 1433
-    container_name: skoruba-identityserver4-db
+    container_name: my-identityserver4-db
     environment:
-      SA_PASSWORD: "Password_123"
+      SA_PASSWORD: ${SA_PASSWORD}
       ACCEPT_EULA: "Y"
     volumes:
-      - dbdata:/var/opt/mssql
+      - my-identityserver-sql:/var/opt/mssql
 
 volumes:
-  dbdata:
+  my-identityserver-sql:
     driver: local
 
 networks:
   default:
-    driver: bridge
+    external:
+      name: my-development-network
